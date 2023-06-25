@@ -1,0 +1,30 @@
+﻿<Window x:Class="DynamicRange.Wpf.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:local="clr-namespace:DynamicRange.Wpf"
+		Title="DynamicRange.Wpf"
+		Width="600" Height="300">
+	<Window.DataContext>
+		<local:MainWindowViewModel/>
+	</Window.DataContext>
+
+	<StackPanel>
+		<Button Command="{Binding IncreaseCommand}">
+			<TextBlock FontSize="16">
+				<Run Text="Increase "/>
+				<Run Text="{Binding Level}"/>
+			</TextBlock>
+		</Button>
+		<Button FontSize="16" Content="Refresh"
+				Command="{Binding RefreshCommand}"/>
+		<ListView ItemsSource="{Binding Displays}">
+			<ListView.View>
+				<GridView AllowsColumnReorder="true">
+					<GridViewColumn DisplayMemberBinding="{Binding FriendlyName}" Header="Friendly name" Width="100"/>
+					<GridViewColumn DisplayMemberBinding="{Binding DevicePath}" Header="Device path" Width="360"/>
+					<GridViewColumn DisplayMemberBinding="{Binding WhiteLevel}" Header="White level (Nits)" Width="100"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+	</StackPanel>
+</Window>
