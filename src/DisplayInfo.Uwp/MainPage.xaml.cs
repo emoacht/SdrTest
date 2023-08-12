@@ -5,7 +5,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace DynamicRange.Uwp;
+namespace DisplayInfo.Uwp;
 
 public sealed partial class MainPage : Page
 {

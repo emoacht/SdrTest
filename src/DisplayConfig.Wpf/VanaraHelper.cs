@@ -4,7 +4,7 @@ using Vanara.PInvoke;
 using static Vanara.PInvoke.Gdi32;
 using static Vanara.PInvoke.User32;
 
-namespace DynamicRange.Wpf;
+namespace DisplayConfig.Wpf;
 
 public static class VanaraHelper
 {

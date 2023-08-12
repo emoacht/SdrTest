@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace DynamicRange.Wpf;
+namespace DisplayConfig.Wpf;
 
 public static class DisplayHelper
 {

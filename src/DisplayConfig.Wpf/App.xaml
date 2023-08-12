@@ -1,7 +1,7 @@
-﻿<Application x:Class="DynamicRange.Wpf.App"
+﻿<Application x:Class="DisplayConfig.Wpf.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DynamicRange.Wpf"
+             xmlns:local="clr-namespace:DisplayConfig.Wpf"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

@@ -4,7 +4,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace DynamicRange.Wpf;
+namespace DisplayConfig.Wpf;
 
 public partial class MainWindowViewModel : ObservableObject
 {

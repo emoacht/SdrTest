@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace DynamicRange.Wpf;
+namespace DisplayConfig.Wpf;
 
 public static class DwmHelper
 {

@@ -6,7 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace DynamicRange.Uwp;
+namespace DisplayInfo.Uwp;
 
 sealed partial class App : Application
 {

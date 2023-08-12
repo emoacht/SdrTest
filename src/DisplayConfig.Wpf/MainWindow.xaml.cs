@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace DynamicRange.Wpf;
+namespace DisplayConfig.Wpf;
 
 public partial class MainWindow : Window
 {

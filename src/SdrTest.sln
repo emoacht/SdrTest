@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicRange.Uwp", "DynamicRange.Uwp\DynamicRange.Uwp.csproj", "{863CFBD5-3BF5-4876-B909-1B6EFCA35804}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayInfo.Uwp", "DisplayInfo.Uwp\DisplayInfo.Uwp.csproj", "{863CFBD5-3BF5-4876-B909-1B6EFCA35804}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicRange.Wpf", "DynamicRange.Wpf\DynamicRange.Wpf.csproj", "{BFE5AEDB-55AB-46BD-A435-1007DDD69EE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayConfig.Wpf", "DisplayConfig.Wpf\DisplayConfig.Wpf.csproj", "{BFE5AEDB-55AB-46BD-A435-1007DDD69EE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
