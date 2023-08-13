@@ -1,8 +1,44 @@
-# Dynamic Range Test
+# SDR Test
 
 Follow up of [Brightness slider not working when Windows 11 HDR on](https://github.com/emoacht/Monitorian/issues/411) and SO question [Controlling SDR content brightness programmatically in Windows 11](https://stackoverflow.com/questions/74594751/controlling-sdr-content-brightness-programmatically-in-windows-11).
 
-Result of Dumpbin
+## IDisplayInformationStaticsInterop interface
+
+[Windows.Graphics.Display.DisplayInformation](https://learn.microsoft.com/en-us/uwp/api/windows.graphics.display.displayinformation) of WinRT had been only usable within UWP until [Windows.Graphics.Display.IDisplayInformationStaticsInterop](https://learn.microsoft.com/en-us/windows/win32/api/windows.graphics.display.interop/nn-windows-graphics-display-interop-idisplayinformationstaticsinterop) interface introduced on Windows 11 10.0.22621.0. This interface has `GetForWindow` and `GetForMonitor` methods for C++/WinRT to obtain `DisplayInformation`.
+
+This functionality is accessible from WPF (.NET 6.0) or WinUI as well through `Windows.Graphics.Display.DisplayInformationInterop` which has `GetForWindow` and `GetForMonitor` methods and was introduced on Windows 11 10.0.22621.0 and .NET 6.0, as indicated in [Available via Target Framework Moniker](https://learn.microsoft.com/en-us/windows/apps/desktop/modernize/winrt-com-interop-csharp#available-via-target-framework-moniker).
+
+For WPF (.NET Framework), no direct way to get `DisplayInformation` is provided but it can be obtained from C++/WinRT Runtime Component library or using COM interop.
+
+### C++/WinRT Runtime Component
+
+To obtain `DisplayInformation` from C++/WinRT Runtime Component library, see [Enhancing Non-packaged Desktop Apps using Windows Runtime Components](https://blogs.windows.com/windowsdeveloper/2019/04/30/enhancing-non-packaged-desktop-apps-using-windows-runtime-components/) and [C++/WinRTのブリッジを作ってC#から呼び出す方法](https://qiita.com/everylittle/items/cb95b24eb9462ddb3cfc). Please note that AppContainerApplication in the library must be made false to allow the library to access APIs other than WinRT.
+
+```xml
+<AppContainerApplication>false</AppContainerApplication>
+```
+
+As for the ways for .NET Framework to use WinRT, the latest one is to install Microsoft.Windows.SDK.Contracts package. See [Earlier versions of .NET: Install the Microsoft.Windows.SDK.Contracts NuGet package](https://learn.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-enhance#earlier-versions-of-net-install-the-microsoftwindowssdkcontracts-nuget-package).
+
+### COM Interop
+
+To obtain `DisplayInformation` using COM interop, the way to obtain RadialController for Surface Dial can be applied. See [Radial Controller sample](https://github.com/Microsoft/Windows-classic-samples/tree/main/Samples/RadialController) and [デスクトップ アプリを Surface Dial に対応させる](http://grabacr.net/archives/7141).
+
+```csharp
+var factory = (IDisplayInformationStaticsInterop)WindowsRuntimeMarshal.GetActivationFactory(typeof(DisplayInformation));
+var iid = typeof(DisplayInformation).GetInterface("IDisplayInformation").GUID;
+factory.GetForMonitor(monitorHandle, ref iid, out DisplayInformation displayInfo);
+return displayInfo;
+```
+
+### Windows.System.DispatcherQueue
+
+For `GetForWindow` method and `AdvancedColorInfoChanged` or other events, Windows.System.DispatcherQueue must be running. See [IDisplayInformationStaticsInterop::GetForWindow method](https://learn.microsoft.com/en-us/windows/win32/api/windows.graphics.display.interop/nf-windows-graphics-display-interop-idisplayinformationstaticsinterop-getforwindow) and [Windows App SDK 1.1 Preview 3 で追加された Desktop Acrylic と Mica のサポートを試した](https://blog.shibayan.jp/entry/20220510/1652191991).
+
+## DWM
+
+Result of Dumpbin dose not include the signature of the function in question.
+
 ```
 > dumpbin /exports c:\Windows\System32\dwmapi.dll
 Microsoft (R) COFF/PE Dumper Version 14.36.32534.0
