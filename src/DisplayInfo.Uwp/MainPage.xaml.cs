@@ -11,15 +11,39 @@ public sealed partial class MainPage : Page
 {
 	public static readonly Size DefaultSize = new(360, 240);
 
-	public float WhiteLevel
+	public float SdrWhiteLevel
 	{
-		get { return (float)GetValue(WhiteLevelProperty); }
-		set { SetValue(WhiteLevelProperty, value); }
+		get { return (float)GetValue(SdrWhiteLevelProperty); }
+		set { SetValue(SdrWhiteLevelProperty, value); }
 	}
-	public static readonly DependencyProperty WhiteLevelProperty =
-		DependencyProperty.Register("WhiteLevel", typeof(float), typeof(MainPage), new PropertyMetadata(0F));
+	public static readonly DependencyProperty SdrWhiteLevelProperty =
+		DependencyProperty.Register("SdrWhiteLevel", typeof(float), typeof(MainPage), new PropertyMetadata(0F));
 
-	private readonly DisplayInformation _displayInformation;
+	public float MinLuminance
+	{
+		get { return (float)GetValue(MinLuminanceProperty); }
+		set { SetValue(MinLuminanceProperty, value); }
+	}
+	public static readonly DependencyProperty MinLuminanceProperty =
+		DependencyProperty.Register("MinLuminance", typeof(float), typeof(MainPage), new PropertyMetadata(0F));
+
+	public float MaxLuminance
+	{
+		get { return (float)GetValue(MaxLuminanceProperty); }
+		set { SetValue(MaxLuminanceProperty, value); }
+	}
+	public static readonly DependencyProperty MaxLuminanceProperty =
+		DependencyProperty.Register("MaxLuminance", typeof(float), typeof(MainPage), new PropertyMetadata(0F));
+
+	public string ColorKind
+	{
+		get { return (string)GetValue(ColorKindProperty); }
+		set { SetValue(ColorKindProperty, value); }
+	}
+	public static readonly DependencyProperty ColorKindProperty =
+		DependencyProperty.Register("ColorKind", typeof(string), typeof(MainPage), new PropertyMetadata(default(string)));
+
+	private readonly DisplayInformation _displayInfo;
 
 	public MainPage()
 	{
@@ -28,14 +52,18 @@ public sealed partial class MainPage : Page
 		ApplicationView.PreferredLaunchViewSize = DefaultSize;
 		ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-		_displayInformation = DisplayInformation.GetForCurrentView();
-		_displayInformation.AdvancedColorInfoChanged += OnAdvancedColorInfoChanged;
+		_displayInfo = DisplayInformation.GetForCurrentView();
+		_displayInfo.AdvancedColorInfoChanged += OnAdvancedColorInfoChanged;
 
-		OnAdvancedColorInfoChanged(_displayInformation, null);
+		OnAdvancedColorInfoChanged(_displayInfo, null);
 	}
 
 	private void OnAdvancedColorInfoChanged(DisplayInformation sender, object args)
 	{
-		WhiteLevel = sender.GetAdvancedColorInfo().SdrWhiteLevelInNits;
+		var colorInfo = sender.GetAdvancedColorInfo();
+		SdrWhiteLevel = colorInfo.SdrWhiteLevelInNits;
+		MinLuminance = colorInfo.MinLuminanceInNits;
+		MaxLuminance = colorInfo.MaxLuminanceInNits;
+		ColorKind = colorInfo.CurrentAdvancedColorKind.ToString();
 	}
 }

@@ -5,12 +5,13 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <Copyright>Copyright © 2023 emoacht</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
-    <PackageReference Include="Vanara.PInvoke.Gdi32" Version="3.4.15" />
-    <PackageReference Include="Vanara.PInvoke.User32" Version="3.4.15" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="Vanara.PInvoke.Gdi32" Version="3.4.16" />
+    <PackageReference Include="Vanara.PInvoke.User32" Version="3.4.16" />
   </ItemGroup>
 
 </Project>

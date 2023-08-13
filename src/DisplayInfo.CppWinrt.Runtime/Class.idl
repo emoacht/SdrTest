@@ -1,0 +1,10 @@
+namespace DisplayInfo_CppWinrt_Runtime
+{
+	[default_interface]
+	runtimeclass Class
+	{
+		Class();
+		Windows.Graphics.Display.DisplayInformation GetForWindow(Int64 window);
+		Windows.Graphics.Display.DisplayInformation GetForMonitor(Int64 monitor);
+	}
+}

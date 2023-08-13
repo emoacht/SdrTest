@@ -8,14 +8,14 @@
 
   <Identity
     Name="27b71cb1-baf0-486e-ba59-4a0cb5b7c012"
-    Publisher="CN=EM"
+    Publisher="CN=emoacht"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="27b71cb1-baf0-486e-ba59-4a0cb5b7c012" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>DisplayInfo.Uwp</DisplayName>
-    <PublisherDisplayName>EM</PublisherDisplayName>
+    <PublisherDisplayName>emoacht</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

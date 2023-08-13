@@ -7,10 +7,28 @@
 	  x:Name="PageRoot"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Grid>
-		<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-				   FontSize="40">
-			<Run Text="{Binding ElementName=PageRoot, Path=WhiteLevel}"/>
-			<Run Text="Nits"/>
-		</TextBlock>
+		<StackPanel VerticalAlignment="Center">
+			<TextBlock HorizontalAlignment="Center"
+					   FontSize="40">
+				<Run Text="SDR: "/>
+				<Run Text="{Binding ElementName=PageRoot, Path=SdrWhiteLevel, Mode=OneWay}"/>
+				<Run Text=" nits"/>
+			</TextBlock>
+			<TextBlock HorizontalAlignment="Center"
+					   FontSize="40">
+				<Run Text="Min: "/>
+				<Run Text="{Binding ElementName=PageRoot, Path=MinLuminance, Mode=OneWay}"/>
+				<Run Text=" nits"/>
+			</TextBlock>
+			<TextBlock HorizontalAlignment="Center"
+					   FontSize="40">
+				<Run Text="Max: "/>
+				<Run Text="{Binding ElementName=PageRoot, Path=MaxLuminance, Mode=OneWay}"/>
+				<Run Text=" nits"/>
+			</TextBlock>
+			<TextBlock HorizontalAlignment="Center"
+					   FontSize="40"
+					   Text="{Binding ElementName=PageRoot, Path=ColorKind, Mode=OneWay}"/>
+		</StackPanel>
 	</Grid>
 </Page>
