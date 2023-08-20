@@ -35,13 +35,15 @@
 
 		<StackPanel Grid.Row="1"
 					VerticalAlignment="Center"
-					TextElement.FontSize="40">
+					TextElement.FontSize="36">
 			<TextBlock HorizontalAlignment="Center"
 					   Text="{Binding ElementName=WindowRoot, Path=SdrWhiteLevel, Mode=OneWay, StringFormat=SDR: {0} nits}"/>
 			<TextBlock HorizontalAlignment="Center"
 					   Text="{Binding ElementName=WindowRoot, Path=MinLuminance, Mode=OneWay, StringFormat=Min: {0} nits}"/>
 			<TextBlock HorizontalAlignment="Center"
 					   Text="{Binding ElementName=WindowRoot, Path=MaxLuminance, Mode=OneWay, StringFormat=Max: {0} nits}"/>
+			<TextBlock HorizontalAlignment="Center"
+					   Text="{Binding ElementName=WindowRoot, Path=MaxAverageFullFrameLuminance, Mode=OneWay, StringFormat=Max Average: {0} nits}"/>
 			<TextBlock HorizontalAlignment="Center"
 					   Text="{Binding ElementName=WindowRoot, Path=ColorKind, Mode=OneWay}"/>
 		</StackPanel>

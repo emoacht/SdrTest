@@ -46,6 +46,14 @@ public partial class MainWindow : Window
 	public static readonly DependencyProperty MaxLuminanceProperty =
 		DependencyProperty.Register("MaxLuminance", typeof(float), typeof(MainWindow), new PropertyMetadata(0F));
 
+	public float MaxAverageFullFrameLuminance
+	{
+		get { return (float)GetValue(MaxAverageFullFrameLuminanceProperty); }
+		set { SetValue(MaxAverageFullFrameLuminanceProperty, value); }
+	}
+	public static readonly DependencyProperty MaxAverageFullFrameLuminanceProperty =
+		DependencyProperty.Register("MaxAverageFullFrameLuminance", typeof(float), typeof(MainWindow), new PropertyMetadata(0F));
+
 	public string ColorKind
 	{
 		get { return (string)GetValue(ColorKindProperty); }
@@ -81,7 +89,7 @@ public partial class MainWindow : Window
 				if (success)
 				{
 					var colorInfo = displayInfo.GetAdvancedColorInfo();
-					Trace.WriteLine($"COM Interop Monitor SDR: {colorInfo.SdrWhiteLevelInNits} Min: {colorInfo.MinLuminanceInNits} Max: {colorInfo.MaxLuminanceInNits} ColorKind: {colorInfo.CurrentAdvancedColorKind}");
+					Trace.WriteLine($"COM Interop Monitor SDR: {colorInfo.SdrWhiteLevelInNits} Min: {colorInfo.MinLuminanceInNits} Max: {colorInfo.MaxLuminanceInNits} | {colorInfo.MaxAverageFullFrameLuminanceInNits} ColorKind: {colorInfo.CurrentAdvancedColorKind}");
 					Reflect(colorInfo, IsWindow is false);
 
 					_monitorDisplayInfo = displayInfo;
@@ -94,7 +102,7 @@ public partial class MainWindow : Window
 		if (success)
 		{
 			var colorInfo = displayInfo.GetAdvancedColorInfo();
-			Trace.WriteLine($"COM Interop Window SDR: {colorInfo.SdrWhiteLevelInNits} Min: {colorInfo.MinLuminanceInNits} Max: {colorInfo.MaxLuminanceInNits} ColorKind: {colorInfo.CurrentAdvancedColorKind}");
+			Trace.WriteLine($"COM Interop Window SDR: {colorInfo.SdrWhiteLevelInNits} Min: {colorInfo.MinLuminanceInNits} Max: {colorInfo.MaxLuminanceInNits} | {colorInfo.MaxAverageFullFrameLuminanceInNits} ColorKind: {colorInfo.CurrentAdvancedColorKind}");
 			Reflect(colorInfo, IsWindow is true);
 
 			_windowDisplayInfo = displayInfo;
@@ -124,6 +132,7 @@ public partial class MainWindow : Window
 		SdrWhiteLevel = colorInfo.SdrWhiteLevelInNits;
 		MinLuminance = colorInfo.MinLuminanceInNits;
 		MaxLuminance = colorInfo.MaxLuminanceInNits;
+		MaxAverageFullFrameLuminance = colorInfo.MaxAverageFullFrameLuminanceInNits;
 		ColorKind = colorInfo.CurrentAdvancedColorKind.ToString();
 	}
 
